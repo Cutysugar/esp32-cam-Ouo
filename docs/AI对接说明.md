@@ -10,7 +10,7 @@
 http://<摄像头IP>/capture
 ```
 
-- 实际地址示例：`http://192.168.31.222/capture`
+- 实际地址示例：`http://<摄像头IP>/capture`
 - IP 是 DHCP 分配的，变了怎么办：按板子 RST 键，在 Arduino 串口监视器(115200)看新 IP
 - 前提：你的设备（手机/电脑）和 ESP32 在同一 WiFi
 
@@ -21,7 +21,7 @@ http://<摄像头IP>/capture
 Python 示例：
 ```python
 import requests
-resp = requests.get("http://192.168.31.222/capture", timeout=5)
+resp = requests.get("http://<摄像头IP>/capture", timeout=5)
 with open("snapshot.jpg", "wb") as f:
     f.write(resp.content)
 # resp.content 就是图片字节
@@ -29,7 +29,7 @@ with open("snapshot.jpg", "wb") as f:
 
 curl 示例：
 ```
-curl -o snapshot.jpg http://192.168.31.222/capture
+curl -o snapshot.jpg http://<摄像头IP>/capture
 ```
 
 ## 怎么喂给视觉模型（如 MiMo-2.5）
@@ -54,7 +54,7 @@ curl -o snapshot.jpg http://192.168.31.222/capture
 ```
 
 **方式二：传图片 URL（如果模型支持拉取公网 URL）**
-注意：`http://192.168.31.222/capture` 是局域网地址，云端模型访问不到。**只有模型能访问到该地址时才可以用 URL 方式**。否则必须用方式一（把图传给后端，由后端调模型）。
+注意：`http://<摄像头IP>/capture` 是局域网地址，云端模型访问不到。**只有模型能访问到该地址时才可以用 URL 方式**。否则必须用方式一（把图传给后端，由后端调模型）。
 
 ## 常见问题
 - 图片偏绿：刚上电时自动白平衡在调整，等十几秒再拉。

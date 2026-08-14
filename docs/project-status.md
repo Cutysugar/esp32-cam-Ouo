@@ -7,7 +7,7 @@
 - ESP32-CAM 烧录成功，画面正常输出（OV3660 摄像头，带 4MB PSRAM）
 - 固件：`C:Usersangelesp32_camesp32_cam.ino`
 - 板子提供 `GET /capture` 返回单张 JPEG
-- 局域网地址示例：`http://192.168.31.222/capture`（DHCP 分配，重新上电可能变，按 RST 后串口监视器可看新 IP）
+- 局域网地址示例：`http://<摄像头IP>/capture`（DHCP 分配，重新上电可能变，按 RST 后串口监视器可看新 IP）
 
 ## 硬件
 - ESP32-CAM + 下载底板（USB-SERIAL CH340, COM 口之前是 COM6）
