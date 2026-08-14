@@ -5,9 +5,10 @@
 
 ## 已完成
 - ESP32-CAM 烧录成功，画面正常输出（OV3660 摄像头，带 4MB PSRAM）
-- 固件：`C:Usersangelesp32_camesp32_cam.ino`
+- 固件：`C:\Users\angel\esp32_cam\esp32_cam.ino`
 - 板子提供 `GET /capture` 返回单张 JPEG
 - 局域网地址示例：`http://<摄像头IP>/capture`（DHCP 分配，重新上电可能变，按 RST 后串口监视器可看新 IP）
+- 已修复「打开页面先显示旧画面」问题：`handleCapture` 先丢两帧缓冲旧帧 + 等 150ms，再抓新鲜帧返回（实测第一次打开即为实时画面）
 
 ## 硬件
 - ESP32-CAM + 下载底板（USB-SERIAL CH340, COM 口之前是 COM6）

@@ -34,7 +34,14 @@ WebServer server(80);
 #define PCLK_GPIO_NUM    22
 
 void handleCapture() {
+  // 摄像头空闲重启后，两个缓冲区里存的都是旧画面：各丢一帧，并留时间给传感器稳定输出新帧
   camera_fb_t* fb = esp_camera_fb_get();
+  if (fb) esp_camera_fb_return(fb);
+  fb = esp_camera_fb_get();
+  if (fb) esp_camera_fb_return(fb);
+  delay(150); // 等传感器稳定产出一帧新画面
+
+  fb = esp_camera_fb_get();
   if (!fb) {
     server.send(500, "text/plain", "Camera capture failed");
     return;
